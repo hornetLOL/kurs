@@ -1,15 +1,13 @@
 package ru.maks.kurs.entity;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import ru.maks.kurs.entity.common.BaseEntity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -19,9 +17,12 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "ученики")
 @EntityListeners(AuditingEntityListener.class)
-public class Student extends BaseEntity {
+public class Student {
 
-
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "Код_уч")
+	private Long id;
 	@Column(name = "имя")
 	private String firstName;
 	@Column(name = "фамилия")
@@ -36,4 +37,10 @@ public class Student extends BaseEntity {
 	private String email;
 	@Column(name = "Дата_Контр")
 	private String dateOfContract;
+
+	@ManyToOne
+	@JoinTable(name = "купл_курс",
+			joinColumns = @JoinColumn(name = "код_уч"),
+			inverseJoinColumns = @JoinColumn(name = "код_курс"))
+	private Curse curse;
 }

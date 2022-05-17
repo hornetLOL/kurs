@@ -5,6 +5,6 @@ import ru.maks.kurs.entity.Student;
 
 import java.util.Optional;
 
-public interface StudentsDao extends JpaRepository<Student, Long> {
+public interface StudentDao extends JpaRepository<Student, Long> {
 	Optional<Student> findByFirstName(String name);
 }
