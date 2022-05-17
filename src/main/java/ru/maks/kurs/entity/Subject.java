@@ -1,9 +1,6 @@
 package ru.maks.kurs.entity;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
@@ -12,9 +9,11 @@ import java.util.Set;
 @Setter
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "предметы")
 @EntityListeners(AuditingEntityListener.class)
+@Builder
 public class Subject {
 
 	@Id
@@ -27,10 +26,5 @@ public class Subject {
 	@OneToMany(mappedBy = "subject", cascade = CascadeType.MERGE)
 	private Set<Curse> products;
 
-	@Builder
-	public Subject(Long id, String title, Set<Curse> products){
-		this.id = id;
-		this.products = products;
-		this.title = title;
-	}
+
 }
