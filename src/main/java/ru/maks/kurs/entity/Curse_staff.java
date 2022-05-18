@@ -17,20 +17,17 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "купл_курс")
+@Table(name = "курс_сотруд")
 @EntityListeners(AuditingEntityListener.class)
 @Builder
-public class PurchesedCurse {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "Код_уч")
-	private Long id;
-	@Column(name = "код_курс")
-	private Long id_curse;
-	@Column(name = "дата_покупки")
-	private String Date_Prsch;
-	@Column(name = "дата_оконч")
-	private String Date_End;
+public class Curse_staff {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "Код_курс")
+    private Long id_curse;
+    @Column(name = "Код_сотруд")
+    private Long id_staff;
+    @Column(name = "Дата_прикреп")
+    private String date_att;
 
 }

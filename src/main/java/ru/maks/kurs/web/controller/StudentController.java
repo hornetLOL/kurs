@@ -39,7 +39,6 @@ public class StudentController {
 
     @PostMapping
     public String handlePost(StudentDto student) {
-        student.setManufactureDate(LocalDate.now());
         studentService.save(student);
         return "redirect:/student/all";
     }

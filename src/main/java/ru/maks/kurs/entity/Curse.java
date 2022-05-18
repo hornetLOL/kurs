@@ -1,8 +1,6 @@
 package ru.maks.kurs.entity;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
@@ -11,9 +9,11 @@ import java.math.BigDecimal;
 @Setter
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "учебные_курсы")
 @EntityListeners(AuditingEntityListener.class)
+@Builder
 public class Curse {
 
 	@Id
