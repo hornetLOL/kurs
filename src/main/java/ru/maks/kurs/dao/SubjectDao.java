@@ -8,5 +8,5 @@ import java.util.Optional;
 
 public interface SubjectDao extends JpaRepository<Subject, Long>{
 
-    Optional<Subject> findSubjectByTitle(String name);
+    Optional<Subject> findByTitle(String name);
 }

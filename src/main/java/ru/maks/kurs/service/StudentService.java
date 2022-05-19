@@ -9,8 +9,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import ru.maks.kurs.dao.CurseDao;
 import ru.maks.kurs.dao.StudentDao;
 import ru.maks.kurs.entity.Student;
+import ru.maks.kurs.web.dto.CurseDto;
 import ru.maks.kurs.web.dto.StudentDto;
 import ru.maks.kurs.web.dto.mapper.StudentMapper;
 
@@ -25,6 +27,7 @@ import java.util.stream.Collectors;
 public class StudentService {
     private final StudentDao studentDao;
     private final StudentMapper studentMapper;
+    private final CurseDao curseDao;
 
 //    @Transactional(propagation = Propagation.NEVER, isolation = Isolation.DEFAULT)
 //    public long count() {
@@ -36,7 +39,7 @@ public class StudentService {
     public StudentDto save(final StudentDto studentDto) {
         Student student;
         try {
-            student = studentMapper.toStudent(studentDto);
+            student = studentMapper.toStudent(studentDto, curseDao);
 //            if (student.getId() != null) {
 //                studentDao.findById(studentDto.getId()).ifPresent(
 //                        (p) -> student.setVersion(p.getVersion())

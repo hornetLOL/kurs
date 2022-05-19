@@ -1,22 +1,20 @@
 package ru.maks.kurs.entity;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-import ru.maks.kurs.entity.common.BaseEntity;
+import ru.maks.kurs.entity.relationTables.PurchasedCurse;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.util.Set;
 
 @Setter
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "ученики")
 @EntityListeners(AuditingEntityListener.class)
+@Builder
 public class Student {
 
 	@Id
@@ -38,9 +36,14 @@ public class Student {
 	@Column(name = "Дата_Контр")
 	private String dateOfContract;
 
-	@ManyToOne
-	@JoinTable(name = "купл_курс",
-			joinColumns = @JoinColumn(name = "код_уч"),
-			inverseJoinColumns = @JoinColumn(name = "код_курс"))
-	private Curse curse;
+	@OneToMany(mappedBy = "student")
+	Set<PurchasedCurse> purchasedCurses;
+
+//	@ManyToOne
+//	@JoinTable(name = "купл_курс",
+//			joinColumns = @JoinColumn(name = "код_уч"),
+//			inverseJoinColumns = @JoinColumn(name = "код_курс"))
+//	private Curse curse;
+
+
 }

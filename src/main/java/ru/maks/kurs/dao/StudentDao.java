@@ -7,9 +7,10 @@ import java.util.Optional;
 
 public interface StudentDao extends JpaRepository<Student, Long> {
 	Optional<Student> findByFirstName(String name);
-	Optional<Student> findStudentByClassNumber(Integer class_number);
-	Optional<Student> findByDateOfContractAfter(String dateOfContract);
-	Optional<Student> findByFirstNameAndLastName(String name);
+	Optional<Student> findByClassNumber(Long class_number);
+	Optional<Student> findByDateOfContract(String dateOfContract);
+	Optional<Student> findByFirstNameAndLastName(String firstName, String lastName);
+	Optional<Student> findByPurchasedCurses(String curseName); //todo
 
 
 }

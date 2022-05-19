@@ -2,9 +2,12 @@ package ru.maks.kurs.entity;
 
 import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import ru.maks.kurs.entity.relationTables.CurseStaff;
+import ru.maks.kurs.entity.relationTables.PurchasedCurse;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Set;
 
 @Setter
 @Getter
@@ -30,4 +33,10 @@ public class Curse {
 	@ManyToOne
 	@JoinColumn(name = "Код_пр")
 	private Subject subject;
+
+	@OneToMany(mappedBy = "curse")
+	Set<PurchasedCurse> studentsAtCurse;
+
+	@OneToMany(mappedBy = "curse")
+	Set<CurseStaff> staffOnCurse;
 }

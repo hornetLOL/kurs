@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface CurseDao extends JpaRepository<Curse, Long> {
 
-    Optional<Curse> findCurseBySubject(String title);
-    Optional<Curse> findCurseByTargetGrope(String targetGroup);
-    Optional<Curse> findCurseByTitle(String title);
+    Optional<Curse> findBySubject(String title); //todo сделать поиск по сабджекта по слову
+    Optional<Curse> findByTargetGrope(String targetGroup);
+    Optional<Curse> findByTitle(String title);
 }

@@ -6,11 +6,11 @@ import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-import ru.maks.kurs.entity.common.BaseEntity;
+import ru.maks.kurs.entity.enums.StaffStatus;
+import ru.maks.kurs.entity.relationTables.CurseStaff;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.util.Set;
 
 @Setter
 @Getter
@@ -25,19 +25,29 @@ public class Staff {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Код_сотруд")
     private Long id;
+
     @Column(name = "Фамилия")
     private String lastName;
+
     @Column(name = "Имя")
     private String firstName;
+
     @Column(name = "Отчество")
     private String middleName;
+
     @Column(name = "Должность")
     private String post;
+
     @Column(name = "Номер_тр_книги")
     private Long numlb;
-    @Column(name = "Паспортные_данные")
-    private Long numpas;
-    @Column(name = "Статус")
-    private Long status;
 
+    @Column(name = "Паспортные_данные")
+    private Long numPas;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "Статус")
+    private StaffStatus status;
+
+    @OneToMany(mappedBy = "staff")
+    Set<CurseStaff> curse;
 }

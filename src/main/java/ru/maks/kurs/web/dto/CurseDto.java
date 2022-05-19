@@ -6,6 +6,9 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import lombok.*;
+import ru.maks.kurs.entity.Subject;
+import ru.maks.kurs.entity.relationTables.CurseStaff;
+import ru.maks.kurs.entity.relationTables.PurchasedCurse;
 
 import javax.persistence.Column;
 import javax.validation.constraints.*;
@@ -28,4 +31,10 @@ public class CurseDto {
     private String targetGroup;
     @NotBlank
     private BigDecimal price;
+
+    @NotBlank
+    private Subject subject;
+
+    Set<PurchasedCurse> studentsAtCurse;
+    Set<CurseStaff> staffOnCurse;
 }
