@@ -71,6 +71,13 @@ public class StudentService {
         }
     }
 
+    public List<StudentDto> findByClassNumber(){
+        //todo поиск по номеру класса
+    }
+
+    public List<StudentDto> find(){
+        //todo поиск по курсу (чел и его курсы)
+    }
 //    public void disable(Long id) {
 //        Optional<Student> student = studentDao.findById(id);
 //        student.ifPresent(p -> {
