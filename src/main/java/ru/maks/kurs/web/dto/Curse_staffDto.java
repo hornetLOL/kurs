@@ -20,10 +20,12 @@ import java.util.Set;
 @Builder
 public class Curse_staffDto {
 
+    private String id;
+
+    @NotBlank
     private Long id_curse;
-
+    @NotBlank
     private Long id_staff;
-
     @NotBlank
     private String date_att;
 }

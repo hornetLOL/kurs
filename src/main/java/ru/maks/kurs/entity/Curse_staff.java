@@ -23,6 +23,8 @@ import java.time.LocalDate;
 public class Curse_staff {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "Код_прикреп")
+    private String id;
     @Column(name = "Код_курс")
     private Long id_curse;
     @Column(name = "Код_сотруд")

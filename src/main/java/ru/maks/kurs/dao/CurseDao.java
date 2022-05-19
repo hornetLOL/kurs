@@ -9,6 +9,6 @@ import java.util.Optional;
 public interface CurseDao extends JpaRepository<Curse, Long> {
 
     Optional<Curse> findCurseBySubject(String title);
-    Optional<Curse> findCurseByTargetGrope(Long targetGroup);
+    Optional<Curse> findCurseByTargetGrope(String targetGroup);
     Optional<Curse> findCurseByTitle(String title);
 }
