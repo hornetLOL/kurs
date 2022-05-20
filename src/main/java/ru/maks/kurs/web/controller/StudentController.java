@@ -48,4 +48,22 @@ public class StudentController {
         studentService.deleteById(id);
         return "redirect:/student/all";
     }
+
+    @GetMapping
+    public String getStudentListByDate(){
+        //todo Получение списка студентов по дате покупки (раньше или позже заданной даты)
+        return "";
+    }
+
+    @GetMapping
+    public String getStudentListByClassNumber(){
+        //todo Получение списка студентов по номеру класса
+        return "";
+    }
+
+    @GetMapping
+    public String getStudentListByCurse(){
+        //todo Получение списка учеников по заданному курсу
+        return "";
+    }
 }
