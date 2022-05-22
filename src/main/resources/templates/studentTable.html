@@ -42,7 +42,7 @@
     </thead>
     <tbody>
     <tr th:classappend="${student.status.name() == 'ACTIVE'} ? 'table-success' : 'table-secondary'"
-        th:each="student: ${students}" th:attr="prod_index=${student.id}">
+        th:each="student: ${students}" th:attr="stud_index=${student.id}">
         <th scope="row">1</th>
         <td th:text="${student.lastname}"></td>
         <td th:text="${student.firstname}"></td>

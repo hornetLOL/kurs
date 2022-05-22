@@ -38,7 +38,7 @@
     </thead>
     <tbody>
     <tr th:classappend="${curse.status.name() == 'ACTIVE'} ? 'table-success' : 'table-secondary'"
-        th:each="curse: ${curses}" th:attr="prod_index=${curse.id}">
+        th:each="curse: ${curses}" th:attr="curse_index=${curse.id}">
         <th scope="row">1</th>
         <td th:text="${curse.title}"></td>
         <td th:text="${curse.targetgrope}"></td>
