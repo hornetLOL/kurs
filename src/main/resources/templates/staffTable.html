@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Информатик БУ | Сотрудники</title>
+    <link href="table.css" rel="stylesheet">
+    <link href="menu1.css" rel="stylesheet">
+</head>
+<body>
+<link href="https://fonts.googleapis.com/css?family=Arvo&display=swap" rel="stylesheet">
+
+<nav role="navigation" class="primary-navigation">
+    <ul>
+        <li><a href="mainPage.html">Главная</a></li>
+        <li><a href="#">Таблицы &dtrif;</a>
+            <ul class="dropdown">
+                <li><a href="staffTable.html">Предметы</a></li>
+                <li><a href="curseTable.html">Курсы</a></li>
+                <li><a href="staffTable.html">Ученики</a></li>
+                <li><a href="staffTable.html">Сотрудники</a></li>
+            </ul>
+        </li>
+        <li><a href="#">Запросы</a></li>
+        <li><a href="#">Изменение таблиц</a></li>
+        <li><a href="#">Отчеты</a></li>
+        <li><a href="#">Выход</a></li>
+    </ul>
+</nav>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Фамилия</th>
+        <th scope="col">Имя</th>
+        <th scope="col">Отчество</th>
+        <th scope="col">Должность</th>
+        <th scope="col">Номер трудовой книги</th>
+        <th scope="col">Паспортные данные</th>
+        <th scope="col">Статус</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:classappend="${staff.status.name() == 'ACTIVE'} ? 'table-success' : 'table-secondary'"
+        th:each="staff: ${staffs}" th:attr="prod_index=${staff.id}">
+        <th scope="row">1</th>
+        <td th:text="${staff.lastname}"></td>
+        <td th:text="${staff.firstname}"></td>
+        <td th:text="${staff.middlename}"></td>
+        <td th:text="${staff.post}"></td>
+        <td th:text="${staff.numlb}"></td>
+        <td th:text="${staff.numpas}"></td>
+        <td th:text="${staff.status}"></td>
+        <td>
+            <!--                    @{/cart/add/(id=${staff.id})}-->
+        </td>
+        <td>
+            <a type="button" class="btn btn-warning" th:href="@{/staff(id=${staff.id})}">Редактировать</a>
+        </td>
+        <td>
+            <!--                    th:href="@{/staff/delete/' + ${staff.id}}"-->
+            <a type="button" class="btn btn-danger" th:href="@{/staff/delete(id=${staff.id})}">Удалить</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

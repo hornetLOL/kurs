@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Информатик БУ | Предметы</title>
+    <link href="table.css" rel="stylesheet">
+    <link href="menu1.css" rel="stylesheet">
+</head>
+<body>
+<link href="https://fonts.googleapis.com/css?family=Arvo&display=swap" rel="stylesheet">
+
+<nav role="navigation" class="primary-navigation">
+    <ul>
+        <li><a href="mainPage.html">Главная</a></li>
+        <li><a href="#">Таблицы &dtrif;</a>
+            <ul class="dropdown">
+                <li><a href="subjectTable.html">Предметы</a></li>
+                <li><a href="curseTable.html">Курсы</a></li>
+                <li><a href="studentTable.html">Ученики</a></li>
+                <li><a href="staffTable.html">Сотрудники</a></li>
+            </ul>
+        </li>
+        <li><a href="#">Запросы</a></li>
+        <li><a href="#">Изменение таблиц</a></li>
+        <li><a href="#">Отчеты</a></li>
+        <li><a href="#">Выход</a></li>
+    </ul>
+</nav>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Название</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:classappend="${subject.status.name() == 'ACTIVE'} ? 'table-success' : 'table-secondary'"
+        th:each="subject: ${subjects}" th:attr="prod_index=${subject.id}">
+        <th scope="row">1</th>
+        <td th:text="${subject.title}"></td>
+        <td>
+            <!--                    @{/cart/add/(id=${subject.id})}-->
+        </td>
+        <td>
+            <a type="button" class="btn btn-warning" th:href="@{/subject(id=${subject.id})}">Редактировать</a>
+        </td>
+        <td>
+            <!--                    th:href="@{/subject/delete/' + ${subject.id}}"-->
+            <a type="button" class="btn btn-danger" th:href="@{/subject/delete(id=${subject.id})}">Удалить</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
