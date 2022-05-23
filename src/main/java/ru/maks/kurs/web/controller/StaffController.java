@@ -55,7 +55,7 @@ public class StaffController {
         return "staff/staff-list";
     }
 
-    @GetMapping()
+    @GetMapping
     public String getStaff(Model model, @RequestParam(name = "id", required = false) Long id,
                            @RequestParam(name = "numPass", required = false) Long numPass) {
         StaffDto staff;
