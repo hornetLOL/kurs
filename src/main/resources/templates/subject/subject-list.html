@@ -20,13 +20,13 @@
     <table class="table">
         <thead>
         <tr>
-            <th scope="col">#</th>
+            <th scope="col">id</th>
             <th scope="col">Название</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="subject: ${subjects}" th:attr="subj_index=${subject.id}">
-            <th scope="row">1</th>
+            <td th:text="${subject.id}"></td>
             <td th:text="${subject.title}"></td>
 
             <td>

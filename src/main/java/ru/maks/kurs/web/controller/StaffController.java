@@ -31,13 +31,15 @@ public class StaffController {
         List<StaffDto> staffs;
         if(selectionType != null && parametr != null) {
             switch (selectionType) {
-                case "dateAfter":
+                case "post":
                     staffs = staffService.findAllByPost(parametr);
                     break;
-                case "dateBefore":
+                case "status":
 //                    staffs = staffService.findAllByStatus(parametr);
                     staffs = staffService.findAll();
                     break;
+//                case "curse":
+//                    staffs = staffService.findAllByCurse(parametr)
                 default:
                     staffs = staffService.findAll();
                     break;

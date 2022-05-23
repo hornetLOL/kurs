@@ -14,13 +14,16 @@
 <body>
 <link href="https://fonts.googleapis.com/css?family=Arvo&display=swap" rel="stylesheet">
 
+<div th:replace="~{navbar :: navi(Staffs)}"></div>
+<div th:insert="~{selector :: navi(Staffs)}"></div>
+
 <div th:replace="~{navbar :: navi(Staff)}"></div>
 <span th:if="${staffs.size() == 0}">Сотрудников нет</span>
 <div th:unless="${staffs.size() == 0}">
     <table class="table">
         <thead>
         <tr>
-            <th scope="col">#</th>
+            <th scope="col">id</th>
             <th scope="col">Фамилия</th>
             <th scope="col">Имя</th>
             <th scope="col">Отчество</th>
@@ -32,7 +35,7 @@
         </thead>
         <tbody>
         <tr th:each="staff: ${staffs}" th:attr="staff_index=${staff.id}">
-            <th scope="row">1</th>
+            <td th:text="${staff.id}"></td>
             <td th:text="${staff.lastName}"></td>
             <td th:text="${staff.firstName}"></td>
             <td th:text="${staff.middleName}"></td>

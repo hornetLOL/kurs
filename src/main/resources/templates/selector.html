@@ -6,8 +6,8 @@
 </head>
 <body>
 <div class="container" th:fragment="navi(activeTab)">
-    <form th:action="@{/student/all}" th:method="get">
-        <div th:if="${activeTab == 'Students'}">
+    <form th:action="@{/student/all}" th:method="get" th:if="${activeTab == 'Students'}">
+        <div>
 <!--            <input type="hidden"/>-->
             <label>
                 Сортировка по:
@@ -16,6 +16,37 @@
                     <option th:value="dateBefore" th:text="dateBefore"></option>
                     <option th:value="curse" th:text="curse"></option>
                     <option th:value="classNumber" th:text="classNumber"></option>
+                </select>
+                <input type="text" name="parametr" id="parametr-id"/>
+            </label>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <form th:action="@{/staff/all}" th:method="get" th:if="${activeTab == 'Staffs'}">
+        <div>
+            <!--            <input type="hidden"/>-->
+            <label>
+                Сортировка по:
+                <select name="selection">
+                    <option th:value="post" th:text="post"></option>
+                    <option th:value="status" th:text="status"></option>
+                    <option th:value="curse" th:text="curse"></option>
+                </select>
+                <input type="text" name="parametr" id="parametr-id"/>
+            </label>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <form th:action="@{/curse/all}" th:method="get" th:if="${activeTab == 'Curses'}">
+        <div>
+            <!--            <input type="hidden"/>-->
+            <label>
+                Сортировка по:
+                <select name="selection">
+                    <option th:value="priceLower" th:text="priceLower"></option>
+                    <option th:value="priceGreater" th:text="priceGreater"></option>
+                    <option th:value="targetGroup" th:text="targetGroup"></option>
+                    <option th:value="subject" th:text="subject"></option>
                 </select>
                 <input type="text" name="parametr" id="parametr-id"/>
             </label>

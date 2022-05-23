@@ -15,13 +15,14 @@
 <link href="https://fonts.googleapis.com/css?family=Arvo&display=swap" rel="stylesheet">
 
 <div th:replace="~{navbar :: navi(Curses)}"></div>
+<div th:insert="~{selector :: navi(Curses)}"></div>
 
 <span th:if="${curses.size() == 0}">Курсов нет</span>
 <div th:unless="${curses.size() == 0}">
     <table class="table">
         <thead>
         <tr>
-            <th scope="col">#</th>
+            <th scope="col">id</th>
             <th scope="col">Код предмета</th>
             <th scope="col">Название</th>
             <th scope="col">Целевая аудитория</th>
@@ -30,7 +31,7 @@
         </thead>
         <tbody>
         <tr th:each="curse: ${curses}" th:attr="stud_index=${curse.id}">
-            <th scope="row">1</th>
+            <td th:text="${curse.id}"></td>
             <td th:text="${curse.title}"></td>
             <td th:text="${curse.subject.id}"></td>
             <td th:text="${curse.targetGroup}"></td>
