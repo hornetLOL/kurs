@@ -14,7 +14,7 @@
 <div th:replace="~{navbar :: navi(ProductForm)}"></div>
 
 <div class="container">
-    <form th:action="@{/student}" th:object="${student}" th:method="post">
+    <form th:action="@{/staff}" th:object="${staff}" th:method="post">
         <input type="hidden" th:field="*{id}">
         <div class="mb-3">
             <label for="firstName-id" class="form-label">Имя</label>
@@ -30,20 +30,20 @@
             <input type="text" class="form-control" id="middleName-id" th:field="*{middleName}">
         </div>
         <div class="mb-3">
-            <label for="classNumber-id" class="form-label">Класс</label>
-            <input type="text" class="form-control" id="classNumber-id" th:field="*{classNumber}">
+            <label for="post-id" class="form-label">Класс</label>
+            <input type="text" class="form-control" id="post-id" th:field="*{post}">
         </div>
         <div class="mb-3">
-            <label for="phone-id" class="form-label">Телефон</label>
-            <input type="text" class="form-control" id="phone-id" th:field="*{phone}">
+            <label for="numlb-id" class="form-label">Номер трудовой книги</label>
+            <input type="text" class="form-control" id="numlb-id" th:field="*{numlb}">
         </div>
         <div class="mb-3">
-            <label for="email-id" class="form-label">Email</label>
-            <input type="email" class="form-control" id="email-id" th:field="*{email}">
+            <label for="numPass-id" class="form-label">Паспортные данные</label>
+            <input type="text" class="form-control" id="numPass-id" th:field="*{numPass}">
         </div>
         <div class="mb-3">
-            <label for="dateOfContract-id" class="form-label">Дата контроля</label>
-            <input type="date" class="form-control" id="dateOfContract-id" th:field="*{dateOfContract}">
+            <label for="status-id" class="form-label">Статус</label>
+            <input type="text" class="form-control" id="status-id" th:field="*{status}">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
