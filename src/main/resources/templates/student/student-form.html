@@ -14,29 +14,36 @@
 <div th:replace="~{navbar :: navi(ProductForm)}"></div>
 
 <div class="container">
-    <form th:action="@{/product}" th:object="${student}" th:method="post">
+    <form th:action="@{/student}" th:object="${student}" th:method="post">
         <input type="hidden" th:field="*{id}">
         <div class="mb-3">
-            <label for=" title-id" class="form-label">Название продукта</label>
-            <input type="text" class="form-control" id=" title-id" th:field="*{title}" aria-describedby="emailHelp">
+            <label for="firstName-id" class="form-label">Имя</label>
+            <input type="text" class="form-control" id="firstName-id" th:field="*{firstName}" aria-describedby="emailHelp">
 
         </div>
         <div class="mb-3">
-            <label for="cost-id" class="form-label">Цена</label>
-            <input type="text" class="form-control" id="cost-id" th:field="*{cost}">
+            <label for="lastName-id" class="form-label">Фамилия</label>
+            <input type="text" class="form-control" id="lastName-id" th:field="*{lastName}">
         </div>
         <div class="mb-3">
-            <label for="date-id" class="form-label">Дата изготовления</label>
-            <input type="date" class="form-control" id="date-id" >
-<!--            th:field="*{manufactureDate}"-->
+            <label for="middleName-id" class="form-label">Отчество</label>
+            <input type="text" class="form-control" id="middleName-id" th:field="*{middleName}">
         </div>
         <div class="mb-3">
-            <label for="status-id" class="form-label">Наличие товара</label>
-            <select class="form-select" aria-label="Default select example" id="status-id" th:field="*{status}">
-                <option th:each="statusValue : ${T(ru.gb.gbapi.common.enums.Status).values()}"
-                th:value="${statusValue.name()}"
-                th:text="${statusValue.title}"></option>
-            </select>
+            <label for="classNumber-id" class="form-label">Класс</label>
+            <input type="text" class="form-control" id="classNumber-id" th:field="*{classNumber}">
+        </div>
+        <div class="mb-3">
+            <label for="phone-id" class="form-label">Телефон</label>
+            <input type="text" class="form-control" id="phone-id" th:field="*{phone}">
+        </div>
+        <div class="mb-3">
+            <label for="email-id" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email-id" th:field="*{email}">
+        </div>
+        <div class="mb-3">
+            <label for="dateOfContract-id" class="form-label">Дата контроля</label>
+            <input type="date" class="form-control" id="dateOfContract-id" th:field="*{dateOfContract}">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>

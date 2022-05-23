@@ -35,6 +35,6 @@ public class CurseDto {
     @NotBlank
     private Subject subject;
 
-    Set<StudentDto> studentsAtCurse;
-    Set<StaffDto> staffOnCurse;
+    Set<PurchasedCurseDto> studentsAtCurse;
+    Set<CurseStaffDto> staffOnCurse;
 }

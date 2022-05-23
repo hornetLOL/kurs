@@ -40,7 +40,7 @@ public class StaffDto {
     @NotBlank(message = "is required")
     private Long numPass;
 
-    Set<CurseDto> curses;
+    Set<CurseStaffDto> curses;
 
     @NotBlank
     private StaffStatus status;

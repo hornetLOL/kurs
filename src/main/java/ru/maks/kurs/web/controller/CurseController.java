@@ -16,26 +16,34 @@ import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/curses")
+@RequestMapping("/curse")
 public class CurseController {
 
     private final CurseService curseService;
 
     @GetMapping("/all")
-    public String getCurseList(Model model, @RequestParam(name = "priceLower", required = false) Long priceLower,
-                                 @RequestParam(name = "priceGreater", required = false) Long priceGreater,
-                                 @RequestParam(name = "targetGroup", required = false) String targetGroup,
-                                 @RequestParam(name = "subject", required = false) String subject) {
+    public String getCurseList(Model model, @RequestParam(name = "selection", required = false) String selectionType,
+                               @RequestParam(name = "parametr", required = false) String parametr) {
 
         List<CurseDto> curses;
-        if(priceLower != null){
-            curses = curseService.findAllByPriceLower(priceLower);
-        }else if(priceGreater !=null){
-            curses = curseService.findAllByPriceGreater(priceGreater);
-        }else if(targetGroup !=null){
-            curses = curseService.findAllByTargetGroup(targetGroup);
-        }else if(subject !=null){
-            curses = curseService.findAllBySubject(subject);
+        if(selectionType != null && parametr != null) {
+            switch (selectionType) {
+                case "priceLower":
+                    curses = curseService.findAllByPriceLower(Long.parseLong(parametr));
+                    break;
+                case "priceGreater":
+                    curses = curseService.findAllByPriceGreater(Long.parseLong(parametr));
+                    break;
+                case "targetGroup":
+                    curses = curseService.findAllByTargetGroup(parametr);
+                    break;
+                case "subject":
+                    curses = curseService.findAllBySubject(parametr);
+                    break;
+                default:
+                    curses = curseService.findAll();
+                    break;
+            }
         }else
             curses = curseService.findAll();
         model.addAttribute("curses", curses);

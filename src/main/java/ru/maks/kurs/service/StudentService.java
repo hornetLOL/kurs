@@ -14,6 +14,7 @@ import ru.maks.kurs.dao.StudentDao;
 import ru.maks.kurs.entity.Student;
 import ru.maks.kurs.entity.relationTables.PurchasedCurse;
 import ru.maks.kurs.web.dto.CurseDto;
+import ru.maks.kurs.web.dto.PurchasedCurseDto;
 import ru.maks.kurs.web.dto.StudentDto;
 import ru.maks.kurs.web.dto.mapper.StudentMapper;
 
@@ -81,8 +82,8 @@ public class StudentService {
         List<StudentDto> students = findAll();
         List<StudentDto> studentCurse = new ArrayList<>();
         for(StudentDto student : students){
-            for(CurseDto curse : student.getCurses())
-                if(curse.getTitle().equals(curseName))
+            for(PurchasedCurseDto purchasedCurse : student.getCurses())
+                if(purchasedCurse.getCurse().getTitle().equals(curseName))
                     studentCurse.add(student);
         }
         return studentCurse;

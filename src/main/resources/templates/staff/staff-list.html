@@ -17,7 +17,6 @@
 <div th:replace="~{navbar :: navi(Staffs)}"></div>
 <div th:insert="~{selector :: navi(Staffs)}"></div>
 
-<div th:replace="~{navbar :: navi(Staff)}"></div>
 <span th:if="${staffs.size() == 0}">Сотрудников нет</span>
 <div th:unless="${staffs.size() == 0}">
     <table class="table">

@@ -35,11 +35,16 @@ public class StaffController {
                     staffs = staffService.findAllByPost(parametr);
                     break;
                 case "status":
-//                    staffs = staffService.findAllByStatus(parametr);
-                    staffs = staffService.findAll();
+                    if(parametr.equals(StaffStatus.active.getTitle()))
+                        staffs = staffService.findAllByStatus(StaffStatus.active);
+                    else if(parametr.equals(StaffStatus.not_active.getTitle()))
+                        staffs = staffService.findAllByStatus(StaffStatus.not_active);
+                    else
+                        staffs = staffService.findAll();
                     break;
-//                case "curse":
-//                    staffs = staffService.findAllByCurse(parametr)
+                case "curse":
+                    staffs = staffService.findAllByCurseName(parametr);
+                    break;
                 default:
                     staffs = staffService.findAll();
                     break;

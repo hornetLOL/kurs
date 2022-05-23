@@ -37,8 +37,8 @@ public class Student {
 	@Column(name = "Дата_Контр")
 	private LocalDate dateOfContract;
 
-//	@OneToMany(mappedBy = "student")
-//	private Set<PurchasedCurse> curses;
+	@OneToMany(mappedBy = "student")
+	private Set<PurchasedCurse> curses;
 
 //	@ManyToOne
 //	@JoinTable(name = "купл_курс",

@@ -12,15 +12,15 @@
             <label>
                 Сортировка по:
                 <select name="selection">
-                    <option th:value="dateAfter" th:text="dateAfter"></option>
-                    <option th:value="dateBefore" th:text="dateBefore"></option>
-                    <option th:value="curse" th:text="curse"></option>
-                    <option th:value="classNumber" th:text="classNumber"></option>
+                    <option th:value="dateAfter">После даты</option>
+                    <option th:value="dateBefore">До даты</option>
+                    <option th:value="curse">По курсу</option>
+                    <option th:value="classNumber">По классу</option>
                 </select>
-                <input type="text" name="parametr" id="parametr-id"/>
+                <input type="text" name="parametr" id="student-parametr-id"/>
             </label>
+            <button type="submit" class="btn btn-primary">Submit</button>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
     </form>
     <form th:action="@{/staff/all}" th:method="get" th:if="${activeTab == 'Staffs'}">
         <div>
@@ -28,14 +28,14 @@
             <label>
                 Сортировка по:
                 <select name="selection">
-                    <option th:value="post" th:text="post"></option>
-                    <option th:value="status" th:text="status"></option>
-                    <option th:value="curse" th:text="curse"></option>
+                    <option th:value="post">По должности</option>
+                    <option th:value="status">По стаусу</option>
+                    <option th:value="curse">По курсу</option>
                 </select>
-                <input type="text" name="parametr" id="parametr-id"/>
+                <input type="text" name="parametr" id="staff-parametr-id"/>
             </label>
+            <button type="submit" class="btn btn-primary">Submit</button>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
     </form>
     <form th:action="@{/curse/all}" th:method="get" th:if="${activeTab == 'Curses'}">
         <div>
@@ -43,15 +43,15 @@
             <label>
                 Сортировка по:
                 <select name="selection">
-                    <option th:value="priceLower" th:text="priceLower"></option>
-                    <option th:value="priceGreater" th:text="priceGreater"></option>
-                    <option th:value="targetGroup" th:text="targetGroup"></option>
-                    <option th:value="subject" th:text="subject"></option>
+                    <option th:value="priceLower">Цена меньше</option>
+                    <option th:value="priceGreater">Цена больше</option>
+                    <option th:value="targetGroup">Возрасту</option>
+                    <option th:value="subject">Предмету</option>
                 </select>
-                <input type="text" name="parametr" id="parametr-id"/>
+                <input type="text" name="parametr" id="curse-parametr-id"/>
             </label>
+            <button type="submit" class="btn btn-primary">Submit</button>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
 </body>

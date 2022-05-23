@@ -8,10 +8,14 @@ import ru.maks.kurs.dao.CurseDao;
 import ru.maks.kurs.dao.StaffDao;
 import ru.maks.kurs.entity.Staff;
 import ru.maks.kurs.entity.enums.StaffStatus;
+import ru.maks.kurs.web.dto.CurseStaffDto;
+import ru.maks.kurs.web.dto.PurchasedCurseDto;
 import ru.maks.kurs.web.dto.StaffDto;
 
+import ru.maks.kurs.web.dto.StudentDto;
 import ru.maks.kurs.web.dto.mapper.StaffMapper;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
@@ -35,6 +39,18 @@ public class StaffService {
             return null;
         }
     }
+
+    public List<StaffDto> findAllByCurseName(String curseName) {
+        List<StaffDto> staffs = findAll();
+        List<StaffDto> staffCurse = new ArrayList<>();
+        for(StaffDto staff : staffs){
+            for(CurseStaffDto curseStaff : staff.getCurses())
+                if(curseStaff.getCurse().getTitle().equals(curseName))
+                    staffCurse.add(staff);
+        }
+        return staffCurse;
+    }
+
 //    public void deleteById() {
 //        //todo удаление сотрудника по id
 //    }

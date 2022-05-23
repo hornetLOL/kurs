@@ -25,7 +25,6 @@ import java.util.stream.Collectors;
 public class StudentController {
 
     private final StudentService studentService;
-    private final CurseService curseService;
 
     @GetMapping("/all")
     public String getStudentList(Model model, @RequestParam(name = "selection", required = false) String selectionType,
@@ -56,7 +55,7 @@ public class StudentController {
         return "student/student-list";
     }
 
-    @GetMapping("/byId")
+    @GetMapping
     public String getStudent(Model model, @RequestParam(name = "id", required = false) Long id) {
         StudentDto student;
         if (id != null) {

@@ -43,5 +43,8 @@ public class StudentDto {
     @NotBlank
     private LocalDate dateOfContract;
 
-    Set<CurseDto> curses;
+
+    Set<PurchasedCurseDto> curses;
+
+
 }
