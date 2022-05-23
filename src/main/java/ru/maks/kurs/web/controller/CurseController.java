@@ -39,7 +39,7 @@ public class CurseController {
         }else
             curses = curseService.findAll();
         model.addAttribute("curses", curses);
-        return "curse-list";
+        return "curse/curse-list";
     }
 
     @GetMapping

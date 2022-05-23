@@ -12,6 +12,7 @@ import ru.maks.kurs.service.SubjectService;
 import ru.maks.kurs.web.dto.SubjectDto;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -22,8 +23,9 @@ public class SubjectController {
 
     @GetMapping("/all")
     public String getSubjectList(Model model) {
-        model.addAttribute("subjects", subjectService.findAll());
-        return "subject-list";
+        List<SubjectDto> subjects = subjectService.findAll();
+        model.addAttribute("subjects", subjects);
+        return "subject/subject-list";
     }
 
     @GetMapping
@@ -35,7 +37,7 @@ public class SubjectController {
             subject = new SubjectDto();
         }
         model.addAttribute("subject", subject);
-        return "subject-form";
+        return "subject/subject-list";
     }
 
     @PostMapping

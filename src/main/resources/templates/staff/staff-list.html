@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Информатик БУ | Сотрудники</title>
+    <link href="../css/table.css" rel="stylesheet">
+    <link href="../css/menu1.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<link href="https://fonts.googleapis.com/css?family=Arvo&display=swap" rel="stylesheet">
+
+<div th:replace="~{navbar :: navi(Staff)}"></div>
+<span th:if="${staffs.size() == 0}">Сотрудников нет</span>
+<div th:unless="${staffs.size() == 0}">
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Фамилия</th>
+            <th scope="col">Имя</th>
+            <th scope="col">Отчество</th>
+            <th scope="col">Должность</th>
+            <th scope="col">Номер трудовой книги</th>
+            <th scope="col">Паспортные данные</th>
+            <th scope="col">Статус</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="staff: ${staffs}" th:attr="staff_index=${staff.id}">
+            <th scope="row">1</th>
+            <td th:text="${staff.lastName}"></td>
+            <td th:text="${staff.firstName}"></td>
+            <td th:text="${staff.middleName}"></td>
+            <td th:text="${staff.post}"></td>
+            <td th:text="${staff.numlb}"></td>
+            <td th:text="${staff.numPass}"></td>
+            <td th:text="${staff.status}"></td>
+            <td>
+                <!--                    @{/cart/add/(id=${staff.id})}-->
+            </td>
+            <td>
+                <a type="button" class="btn btn-warning" th:href="@{/staff(id=${staff.id})}">Редактировать</a>
+            </td>
+            <td>
+                <!--                    th:href="@{/staff/delete/' + ${staff.id}}"-->
+                <a type="button" class="btn btn-danger" th:href="@{/staff/delete(id=${staff.id})}">Удалить</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

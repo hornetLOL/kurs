@@ -36,7 +36,7 @@ public class StaffController {
         }else
             staffs = staffService.findAll();
         model.addAttribute("staffs", staffs);
-        return "staff-list";
+        return "staff/staff-list";
     }
 
     @GetMapping()
