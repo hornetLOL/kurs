@@ -12,13 +12,14 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.maks.kurs.dao.CurseDao;
 import ru.maks.kurs.dao.StudentDao;
 import ru.maks.kurs.entity.Student;
+import ru.maks.kurs.entity.relationTables.PurchasedCurse;
 import ru.maks.kurs.web.dto.CurseDto;
 import ru.maks.kurs.web.dto.StudentDto;
 import ru.maks.kurs.web.dto.mapper.StudentMapper;
 
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -28,6 +29,7 @@ public class StudentService {
     private final StudentDao studentDao;
     private final StudentMapper studentMapper;
     private final CurseDao curseDao;
+    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
 //    @Transactional(propagation = Propagation.NEVER, isolation = Isolation.DEFAULT)
 //    public long count() {
@@ -62,10 +64,6 @@ public class StudentService {
         return studentDao.findAll().stream().map(studentMapper::toStudentDto).collect(Collectors.toList());
     }
 
-//    public List<Student> findAllActive() {
-//        return studentDao.findAllByStatus(Status.ACTIVE);
-//    }
-
     public void deleteById(Long id) {
         try {
             studentDao.deleteById(id);
@@ -74,31 +72,33 @@ public class StudentService {
         }
     }
 
-    public List<StudentDto> findByClassNumber(){
-        //todo поиск по номеру класса
+    public List<StudentDto> findAllByClassNumber(Long classNum){
+        return studentDao.findAllByClassNumber(classNum)
+                .stream().map(studentMapper::toStudentDto).collect(Collectors.toList());
     }
 
-    public List<StudentDto> find(){
-        //todo поиск по курсу (чел и его курсы)
-    }
-//    public void disable(Long id) {
-//        Optional<Student> student = studentDao.findById(id);
-//        student.ifPresent(p -> {
-//            p.setStatus(Status.DISABLED);
-//            studentDao.save(p);
-//        });
-//    }
-
-    public List<Student> findAll(int page, int size) {
-        return studentDao.findAll();
+    public List<StudentDto> findAllByCurseName(String curseName) {
+        List<StudentDto> students = findAll();
+        List<StudentDto> studentCurse = new ArrayList<>();
+        for(StudentDto student : students){
+            for(CurseDto curse : student.getCurses())
+                if(curse.getTitle().equals(curseName))
+                    studentCurse.add(student);
+        }
+        return studentCurse;
     }
 
-//    public List<Student> findAllSortedById() {
-//        return studentDao.findAllByStatus(Status.ACTIVE, Sort.by("id"));
-//    }
-//
-//    public List<Student> findAllSortedById(int page, int size) {
-//        return studentDao.findAllByStatus(Status.ACTIVE, PageRequest.of(page, size, Sort.by("id")));
-//    }
+    public List<StudentDto> findAllBeforeDate(String dateBefore) {
+        //convert String to LocalDate
+        LocalDate date = LocalDate.parse(dateBefore, formatter);
+        return studentDao.findAllByDateOfContractBefore(date)
+                .stream().map(studentMapper::toStudentDto).collect(Collectors.toList());
+    }
+
+    public List<StudentDto> findAllAfterDate(String dateAfter) {
+        LocalDate date = LocalDate.parse(dateAfter, formatter);
+        return studentDao.findAllByDateOfContractAfter(date)
+                .stream().map(studentMapper::toStudentDto).collect(Collectors.toList());
+    }
 
 }

@@ -15,7 +15,7 @@ import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@Mapper(uses = StaffMapper.class)
+@Mapper
 public interface StaffMapper {
 
 	Staff toStaff(StaffDto staffDto, @Context CurseDao curseDao);
@@ -30,13 +30,13 @@ public interface StaffMapper {
 //	default String getStaff(Staff staff) {
 //		return staff.getTitle();
 //	}
-
-	default Set<Curse> curseDtoSetToCurseSet(Set<CurseDto> curses, @Context CurseDao curseDao) {
-		return curses.stream().map(c -> curseDao.findById(c.getId())
-						.orElseThrow(
-								() -> new NoSuchElementException("There isn't curse with id + " + c.getId()))
-				)
-				.collect(Collectors.toSet());
-	}
+//
+//	default Set<Curse> curseDtoSetToCurseSet(Set<CurseDto> curses, @Context CurseDao curseDao) {
+//		return curses.stream().map(c -> curseDao.findById(c.getId())
+//						.orElseThrow(
+//								() -> new NoSuchElementException("There isn't curse with id + " + c.getId()))
+//				)
+//				.collect(Collectors.toSet());
+//	}
 	
 }

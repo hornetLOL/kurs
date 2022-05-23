@@ -5,6 +5,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import ru.maks.kurs.entity.relationTables.PurchasedCurse;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Set;
 
 @Setter
@@ -34,10 +35,10 @@ public class Student {
 	@Column(name = "Электронная_почта")
 	private String email;
 	@Column(name = "Дата_Контр")
-	private String dateOfContract;
+	private LocalDate dateOfContract;
 
-	@OneToMany(mappedBy = "student")
-	Set<PurchasedCurse> purchasedCurses;
+//	@OneToMany(mappedBy = "student")
+//	private Set<PurchasedCurse> curses;
 
 //	@ManyToOne
 //	@JoinTable(name = "купл_курс",

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--<nav role="navigation" class="primary-navigation">-->
+<!--    <ul>-->
+<!--        <li><a href="../mainPage.html">Главная</a></li>-->
+<!--        <li><a href="#">Таблицы &dtrif;</a>-->
+<!--            <ul class="dropdown">-->
+<!--                <li><a href="staffTable.html">Предметы</a></li>-->
+<!--                <li><a href="../curse/curseTable.html">Курсы</a></li>-->
+<!--                <li><a href="staffTable.html">Ученики</a></li>-->
+<!--                <li><a href="staffTable.html">Сотрудники</a></li>-->
+<!--            </ul>-->
+<!--        </li>-->
+<!--        <li><a href="#">Запросы</a></li>-->
+<!--        <li><a href="#">Отчеты</a></li>-->
+<!--        <li><a href="#">Выход</a></li>-->
+<!--    </ul>-->
+<!--</nav>-->
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" th:fragment="navi(activeTab)">
+
+    <div class="container-fluid">
+        <a class="navbar-brand" th:href="@{/}">Главная</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" th:classappend="${activeTab == 'Students' ? 'active' : ''}" aria-current="page" th:href="@{/students/all}">Ученики</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:classappend="${activeTab == 'Curses' ? 'active' : ''}" th:href="@{/curses/all}">Курсы</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:classappend="${activeTab == 'Staff' ? 'active' : ''}" th:href="@{/cart/all}">Сотрудники</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:classappend="${activeTab == 'Subjects' ? 'active' : ''}" th:href="@{/subjects/all}">Предметы</a>
+                </li>
+                <li><a class="nav-link" th:classappend="${activeTab == 'Subjects' ? 'active' : ''}" th:href="@{/}">А это что такое? &dtrif;</a>
+                    <ul class="dropdown">
+                        <li><a>Запросы</a></li>
+                        <li><a>Отчеты</a></li>
+                        <li><a>Выход</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+</body>
+</html>

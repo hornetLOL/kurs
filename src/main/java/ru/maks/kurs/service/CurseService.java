@@ -9,52 +9,76 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import ru.maks.kurs.dao.StudentDao;
+import ru.maks.kurs.dao.*;
+import ru.maks.kurs.dao.CurseDao;
+import ru.maks.kurs.entity.*;
 import ru.maks.kurs.entity.Curse;
-import ru.maks.kurs.entity.Staff;
-import ru.maks.kurs.entity.Student;
-import ru.maks.kurs.entity.Subject;
+import ru.maks.kurs.entity.relationTables.PurchasedCurse;
 import ru.maks.kurs.web.dto.CurseDto;
 import ru.maks.kurs.web.dto.StaffDto;
-import ru.maks.kurs.web.dto.StudentDto;
-import ru.maks.kurs.web.dto.mapper.StudentMapper;
+import ru.maks.kurs.web.dto.CurseDto;
+import ru.maks.kurs.web.dto.mapper.CurseMapper;
+import ru.maks.kurs.web.dto.mapper.CurseMapper;
 
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
+import java.math.BigDecimal;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 @Slf4j
-
 public class CurseService {
 
+    private final CurseDao curseDao;
+    private final CurseMapper curseMapper;
+    private final StudentDao studentDao;
+    private final StaffDao staffDao;
+    private final SubjectDao subjectDao;
 
     @Transactional
-    public CurseDto save(){
-        //todo сохранение нового курса
+    public CurseDto save(final CurseDto curseDto){
+        Curse curse;
+        try {
+            curse = curseMapper.toCurse(curseDto, subjectDao, studentDao, staffDao);
+            return curseMapper.toCurseDto(curseDao.save(curse));
+        }catch (NoSuchElementException e){
+            return null;
+        }
     }
-    public void deleteById() {
-        //todo удаление курса по id
-    }
-    @Transactional
-    public Curse findById(Long id) {
-        //todo поиск по id курса
-    }
-
-    @Transactional
-    public Curse findByTitle(String title) {
-        //todo поиск по названию курса
-    }
-
-    @Transactional
-    public Curse findBytargetGroup(String tragetGroup) {
-        //todo поиск по номеру трудовой
+//    public void deleteById() {
+//        //todo удаление курса по id
+//    }
+    
+    @Transactional(readOnly = true)
+    public CurseDto findById(Long id) {
+        return curseMapper.toCurseDto((curseDao.findById(id).orElse(null)));
     }
 
-    @Transactional
-    public Curse findByPrice(Long price) {
-        //todo поиск по цене, которая больше\меньше заданной
+    public List<CurseDto> findAllByPriceLower(Long price) {
+        return curseDao.findAllByPriceLessThan(new BigDecimal(price)).stream()
+                .map(curseMapper::toCurseDto).collect(Collectors.toList());
+    }
+
+    public List<CurseDto> findAllByPriceGreater(Long price) {
+        return curseDao.findAllByPriceGreaterThan(new BigDecimal(price)).stream()
+                .map(curseMapper::toCurseDto).collect(Collectors.toList());
+    }
+
+    public List<CurseDto> findAll(){
+        return curseDao.findAll().stream().map(curseMapper::toCurseDto).collect(Collectors.toList());
+    }
+    
+    public List<CurseDto> findAllByTargetGroup(String targetGroup){
+        return curseDao.findAllByTargetGroup(targetGroup).stream().map(curseMapper::toCurseDto).collect(Collectors.toList());
+    }
+    
+    public List<CurseDto> findAllBySubject(String subject){
+        List<CurseDto> curses = findAll();
+        List<CurseDto> curseSubject = new ArrayList<>();
+        for(CurseDto curse : curses){
+            if(curse.getSubject().getTitle().equals(subject))
+                curseSubject.add(curse);
+        }
+        return curseSubject;
     }
 }

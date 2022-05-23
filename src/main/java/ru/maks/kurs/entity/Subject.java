@@ -23,8 +23,4 @@ public class Subject {
 	@Column(name = "Предмет")
 	private String title;
 
-	@OneToMany(mappedBy = "subject", cascade = CascadeType.MERGE)
-	private Set<Curse> products;
-
-
 }

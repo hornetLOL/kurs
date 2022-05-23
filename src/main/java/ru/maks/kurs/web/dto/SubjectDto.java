@@ -25,5 +25,4 @@ public class SubjectDto {
     @NotBlank
     private String title;
 
-
 }

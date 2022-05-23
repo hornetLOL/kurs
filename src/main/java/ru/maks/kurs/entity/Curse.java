@@ -26,7 +26,7 @@ public class Curse {
 	@Column(name = "Название")
 	private String title;
 	@Column(name = "Целевая_аудитория")
-	private String targetGrope;
+	private String targetGroup;
 	@Column(name = "Стоимость")
 	private BigDecimal price;
 

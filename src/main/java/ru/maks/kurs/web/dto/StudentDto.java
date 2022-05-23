@@ -41,7 +41,7 @@ public class StudentDto {
     @NotBlank(message = "is required")
     private String email;
     @NotBlank
-    private String dateOfContract;
+    private LocalDate dateOfContract;
 
-    Set<PurchasedCurse> purchasedCurses;
+    Set<CurseDto> curses;
 }

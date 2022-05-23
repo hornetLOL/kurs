@@ -17,10 +17,11 @@ import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@Mapper(uses = SubjectMapper.class)
+@Mapper(uses = {SubjectMapper.class, StaffMapper.class, StudentMapper.class})
 public interface CurseMapper {
 
-	Curse toCurse(CurseDto curseDto, @Context StudentDao studentDao);
+
+	Curse toCurse(CurseDto curseDto, @Context SubjectDao subjectDao, @Context StudentDao studentDao, @Context StaffDao staffDao);
 
 	CurseDto toCurseDto(Curse curse);
 

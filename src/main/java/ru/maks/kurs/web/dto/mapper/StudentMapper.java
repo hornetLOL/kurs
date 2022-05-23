@@ -18,21 +18,21 @@ public interface StudentMapper {
 
     StudentDto toStudentDto(Student student);
 
-    default Curse getCurse(String curse, @Context CurseDao curseDao) {
-        return curseDao.findByTitle(curse).orElseThrow(
-                () -> new NoSuchElementException("There isn't manufacturer with name " + curse));
-    }
-
-    default String getCurse(Curse curse) {
-        return curse.getTitle();
-    }
-
-    default Set<Curse> curseDtoSetToCurseSet(Set<CurseDto> curses, @Context CurseDao curseDao) {
-        return curses.stream().map(c -> curseDao.findById(c.getId())
-                        .orElseThrow(
-                                () -> new NoSuchElementException("There isn't curse with id + " + c.getId()))
-                )
-                .collect(Collectors.toSet());
-    }
+//    default Curse getCurse(String curse, @Context CurseDao curseDao) {
+//        return curseDao.findByTitle(curse).orElseThrow(
+//                () -> new NoSuchElementException("There isn't manufacturer with name " + curse));
+//    }
+//
+//    default String getCurse(Curse curse) {
+//        return curse.getTitle();
+//    }
+//
+//    default Set<Curse> curseDtoSetToCurseSet(Set<CurseDto> curses, @Context CurseDao curseDao) {
+//        return curses.stream().map(c -> curseDao.findById(c.getId())
+//                        .orElseThrow(
+//                                () -> new NoSuchElementException("There isn't curse with id + " + c.getId()))
+//                )
+//                .collect(Collectors.toSet());
+//    }
 
 }

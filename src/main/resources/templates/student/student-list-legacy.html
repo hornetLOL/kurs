@@ -14,7 +14,7 @@
 <div th:replace="~{navbar :: navi(ProductList)}"></div>
 
 <div class="container">
-    <span th:if="${products.size() == 0}">Товаров нет</span>
+    <span th:if="${s.size() == 0}">Товаров нет</span>
     <div th:unless="${products.size() == 0}">
         <table class="table">
             <thead>

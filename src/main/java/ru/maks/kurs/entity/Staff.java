@@ -42,12 +42,12 @@ public class Staff {
     private Long numlb;
 
     @Column(name = "Паспортные_данные")
-    private Long numPas;
+    private Long numPass;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "Статус")
     private StaffStatus status;
 
     @OneToMany(mappedBy = "staff")
-    Set<CurseStaff> curse;
+    Set<CurseStaff> curses;
 }

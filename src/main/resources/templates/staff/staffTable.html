@@ -3,28 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Информатик БУ | Сотрудники</title>
-    <link href="table.css" rel="stylesheet">
-    <link href="menu1.css" rel="stylesheet">
+    <link href="../css/table.css" rel="stylesheet">
+    <link href="../css/menu1.css" rel="stylesheet">
 </head>
 <body>
 <link href="https://fonts.googleapis.com/css?family=Arvo&display=swap" rel="stylesheet">
 
-<nav role="navigation" class="primary-navigation">
-    <ul>
-        <li><a href="mainPage.html">Главная</a></li>
-        <li><a href="#">Таблицы &dtrif;</a>
-            <ul class="dropdown">
-                <li><a href="staffTable.html">Предметы</a></li>
-                <li><a href="curseTable.html">Курсы</a></li>
-                <li><a href="staffTable.html">Ученики</a></li>
-                <li><a href="staffTable.html">Сотрудники</a></li>
-            </ul>
-        </li>
-        <li><a href="#">Запросы</a></li>
-        <li><a href="#">Отчеты</a></li>
-        <li><a href="#">Выход</a></li>
-    </ul>
-</nav>
+<div th:replace="~{navbar :: navi(Staff)}"></div>
 
 <table class="table">
     <thead>

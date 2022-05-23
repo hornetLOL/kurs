@@ -7,6 +7,7 @@ import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import lombok.*;
 import ru.maks.kurs.entity.enums.StaffStatus;
+import ru.maks.kurs.entity.relationTables.CurseStaff;
 
 import javax.persistence.Column;
 import javax.validation.constraints.*;
@@ -37,7 +38,9 @@ public class StaffDto {
     private Long numlb;
     @Size(min = 10, message = "Number must be grater 9 symbols")
     @NotBlank(message = "is required")
-    private Long numpas;
+    private Long numPass;
+
+    Set<CurseDto> curses;
 
     @NotBlank
     private StaffStatus status;

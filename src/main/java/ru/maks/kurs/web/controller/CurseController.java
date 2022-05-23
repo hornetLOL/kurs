@@ -9,19 +9,36 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.maks.kurs.service.CurseService;
 import ru.maks.kurs.web.dto.CurseDto;
+import ru.maks.kurs.web.dto.CurseDto;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/curse")
+@RequestMapping("/curses")
 public class CurseController {
 
     private final CurseService curseService;
 
     @GetMapping("/all")
-    public String getCurseList(Model model) {
-        model.addAttribute("curses", curseService.findAll());
+    public String getStudentList(Model model, @RequestParam(name = "priceLower", required = false) Long priceLower,
+                                 @RequestParam(name = "priceGreater", required = false) Long priceGreater,
+                                 @RequestParam(name = "targetGroup", required = false) String targetGroup,
+                                 @RequestParam(name = "subject", required = false) String subject) {
+
+        List<CurseDto> curses;
+        if(priceLower != null){
+            curses = curseService.findAllByPriceLower(priceLower);
+        }else if(priceGreater !=null){
+            curses = curseService.findAllByPriceGreater(priceGreater);
+        }else if(targetGroup !=null){
+            curses = curseService.findAllByTargetGroup(targetGroup);
+        }else if(subject !=null){
+            curses = curseService.findAllBySubject(subject);
+        }else
+            curses = curseService.findAll();
+        model.addAttribute("curses", curses);
         return "curse-list";
     }
 
@@ -43,34 +60,10 @@ public class CurseController {
         return "redirect:/curse/all";
     }
 
-    @GetMapping("/delete")
-    public String deleteById(@RequestParam(name = "id") Long id) {
-        curseService.deleteById(id);
-        return "redirect:/curse/all";
-    }
-
-    @GetMapping
-    public String getCurseListByCost(){
-        //todo Получение списка курсов выше или ниже заданной цены
-        return "";
-    }
-
-    @GetMapping
-    public String getCurseListByTargetGroup(){
-        //todo Получение списка курсов по заданной целевой аудитории
-        return "";
-    }
-
-    @GetMapping
-    public String getCurseByName(){
-        //todo Вывод курса по названию
-        return"";
-    }
-
-    @GetMapping
-    public String getCurseListBySubject(){
-        //todo Вывод списка курсов по заданному предмету
-        return"";
-    }
+//    @GetMapping("/delete")
+//    public String deleteById(@RequestParam(name = "id") Long id) {
+//        curseService.deleteById(id);
+//        return "redirect:/curse/all";
+//    }
 
 }

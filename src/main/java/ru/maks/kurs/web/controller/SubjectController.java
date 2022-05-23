@@ -13,6 +13,9 @@ import ru.maks.kurs.web.dto.SubjectDto;
 
 import java.time.LocalDate;
 
+@Controller
+@RequiredArgsConstructor
+@RequestMapping("/subject")
 public class SubjectController {
     
     private final SubjectService subjectService;
@@ -41,15 +44,9 @@ public class SubjectController {
         return "redirect:/subject/all";
     }
 
-    @GetMapping("/delete")
-    public String deleteById(@RequestParam(name = "id") Long id) {
-        subjectService.deleteById(id);
-        return "redirect:/subject/all";
-    }
-
-    @GetMapping
-    public String getSubjectListByName(){
-        //todo Вывод предмета по названинию
-        return "";
-    }
+//    @GetMapping("/delete")
+//    public String deleteById(@RequestParam(name = "id") Long id) {
+//        subjectService.deleteById(id);
+//        return "redirect:/subject/all";
+//    }
 }

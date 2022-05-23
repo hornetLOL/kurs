@@ -91,10 +91,10 @@ INSERT INTO `купл_курс` (`Код_чека`, `код_уч`, `код_ку�
 --
 
 CREATE TABLE IF NOT EXISTS `курс_сотруд` (
-  `Код_прикреп` varchar(10) NOT NULL,
+  `Код_прикреп` int(4) NOT NULL,
   `Код_курс` int(4) DEFAULT NULL,
   `Код_сотруд` int(5) DEFAULT NULL,
-  `Дата_прикреп` varchar(10) DEFAULT NULL,
+  `Дата_прикреп` date DEFAULT NULL,
   PRIMARY KEY (`Код_прикреп`),
   KEY `Код_курс` (`Код_курс`),
   KEY `Код_сотруд` (`Код_сотруд`)
@@ -293,7 +293,7 @@ CREATE TABLE IF NOT EXISTS `ученики` (
   `Номер_класса` int(2) DEFAULT NULL,
   `Номер_тлф` bigint(11) DEFAULT NULL,
   `Электронная_почта` varchar(21) DEFAULT NULL,
-  `Дата_Контр` varchar(10) DEFAULT NULL,
+  `Дата_Контр` date DEFAULT NULL,
   PRIMARY KEY (`Код_уч`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
