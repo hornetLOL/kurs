@@ -28,20 +28,28 @@ public class StudentController {
     private final CurseService curseService;
 
     @GetMapping("/all")
-    public String getStudentList(Model model, @RequestParam(name = "dateAfter", required = false) String dateAfter,
-            @RequestParam(name = "dateBefore", required = false) String dateBefore,
-                                 @RequestParam(name = "curse", required = false) String curseName,
-                                 @RequestParam(name = "classNumber", required = false) Long classNum) {
+    public String getStudentList(Model model, @RequestParam(name = "selection", required = false) String selectionType,
+                                 @RequestParam(name = "parametr", required = false) String parametr) {
 
         List<StudentDto> students;
-        if(dateAfter != null){
-            students = studentService.findAllAfterDate(dateAfter);
-        }else if(dateBefore !=null){
-            students = studentService.findAllBeforeDate(dateBefore);
-        }else if(curseName != null){
-            students = studentService.findAllByCurseName(curseName);
-        }else if(classNum != null){
-            students = studentService.findAllByClassNumber(classNum);
+        if(selectionType != null && parametr != null) {
+            switch (selectionType) {
+                case "dateAfter":
+                    students = studentService.findAllAfterDate(parametr);
+                    break;
+                case "dateBefore":
+                    students = studentService.findAllBeforeDate(parametr);
+                    break;
+                case "curse":
+                    students = studentService.findAllByCurseName(parametr);
+                    break;
+                case "classNumber":
+                    students = studentService.findAllByClassNumber(Long.parseLong(parametr));
+                    break;
+                default:
+                    students = studentService.findAll();
+                    break;
+            }
         }else
             students = studentService.findAll();
         model.addAttribute("students", students);
@@ -57,7 +65,7 @@ public class StudentController {
             student = new StudentDto();
         }
         model.addAttribute("student", student);
-        return "student-form";
+        return "student/student-form";
     }
 
 //    @GetMapping

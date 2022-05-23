@@ -22,7 +22,7 @@ public class CurseController {
     private final CurseService curseService;
 
     @GetMapping("/all")
-    public String getStudentList(Model model, @RequestParam(name = "priceLower", required = false) Long priceLower,
+    public String getCurseList(Model model, @RequestParam(name = "priceLower", required = false) Long priceLower,
                                  @RequestParam(name = "priceGreater", required = false) Long priceGreater,
                                  @RequestParam(name = "targetGroup", required = false) String targetGroup,
                                  @RequestParam(name = "subject", required = false) String subject) {

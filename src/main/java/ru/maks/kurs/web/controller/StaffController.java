@@ -22,17 +22,26 @@ import java.util.List;
 @RequestMapping("/staff")
 public class StaffController {
 
-    private StaffService staffService;
+    private final StaffService staffService;
 
     @GetMapping("/all")
-    public String getStudentList(Model model, @RequestParam(name = "post", required = false) String post,
-                                 @RequestParam(name = "status", required = false) StaffStatus status) {
+    public String getStaffList(Model model, @RequestParam(name = "selection", required = false) String selectionType,
+                               @RequestParam(name = "parametr", required = false) String parametr) {
 
         List<StaffDto> staffs;
-        if(post != null){
-            staffs = staffService.findAllByPost(post);
-        }else if(status !=null){
-            staffs = staffService.findAllByStatus(status);
+        if(selectionType != null && parametr != null) {
+            switch (selectionType) {
+                case "dateAfter":
+                    staffs = staffService.findAllByPost(parametr);
+                    break;
+                case "dateBefore":
+//                    staffs = staffService.findAllByStatus(parametr);
+                    staffs = staffService.findAll();
+                    break;
+                default:
+                    staffs = staffService.findAll();
+                    break;
+            }
         }else
             staffs = staffService.findAll();
         model.addAttribute("staffs", staffs);

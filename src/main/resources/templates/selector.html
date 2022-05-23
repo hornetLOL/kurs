@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container" th:fragment="navi(activeTab)">
+    <form th:action="@{/student/all}" th:method="get">
+        <div th:if="${activeTab == 'Students'}">
+<!--            <input type="hidden"/>-->
+            <label>
+                Сортировка по:
+                <select name="selection">
+                    <option th:value="dateAfter" th:text="dateAfter"></option>
+                    <option th:value="dateBefore" th:text="dateBefore"></option>
+                    <option th:value="curse" th:text="curse"></option>
+                    <option th:value="classNumber" th:text="classNumber"></option>
+                </select>
+                <input type="text" name="parametr" id="parametr-id"/>
+            </label>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+</body>
+</html>
