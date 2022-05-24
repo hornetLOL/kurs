@@ -56,6 +56,9 @@
             <a type="button" class="btn btn-primary" th:href="@{/curse}">Добавить</a>
         </div>
     </form>
+    <div th:if="${activeTab =='Subject'}">
+        <a type="button" class="btn btn-primary" th:href="@{/subject}">Добавить</a>
+    </div>
 </div>
 </body>
 </html>

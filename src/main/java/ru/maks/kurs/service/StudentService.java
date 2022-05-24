@@ -30,7 +30,7 @@ public class StudentService {
     private final StudentDao studentDao;
     private final StudentMapper studentMapper;
     private final CurseDao curseDao;
-    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 
 //    @Transactional(propagation = Propagation.NEVER, isolation = Isolation.DEFAULT)
 //    public long count() {

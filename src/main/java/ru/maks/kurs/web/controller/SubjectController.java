@@ -37,7 +37,7 @@ public class SubjectController {
             subject = new SubjectDto();
         }
         model.addAttribute("subject", subject);
-        return "subject/subject-list";
+        return "subject/subject-form";
     }
 
     @PostMapping

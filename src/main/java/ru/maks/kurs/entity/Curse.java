@@ -20,7 +20,7 @@ import java.util.Set;
 public class Curse {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "Код_курс")
 	private Long id;
 	@Column(name = "Название")

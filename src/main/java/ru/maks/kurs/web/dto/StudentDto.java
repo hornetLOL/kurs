@@ -40,8 +40,12 @@ public class StudentDto {
     @Email
     @NotBlank(message = "is required")
     private String email;
-    @NotBlank
-    private LocalDate dateOfContract;
+
+//    @PastOrPresent
+//    @JsonFormat(pattern="yyyy-MM-dd")
+//    @JsonDeserialize(using = LocalDateDeserializer.class)
+//    @JsonSerialize(using = LocalDateSerializer.class)
+    private String dateOfContract;
 
 
     Set<PurchasedCurseDto> curses;
