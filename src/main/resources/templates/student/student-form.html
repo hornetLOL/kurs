@@ -15,7 +15,11 @@
 
 <div class="container">
     <form th:action="@{/student}" th:object="${student}" th:method="post">
-        <input type="hidden" th:field="*{id}">
+        <div class="mb-3">
+            <label for="id-id" class="form-label">id</label>
+            <input type="text" class="form-control" id="id-id" th:field="*{id}" aria-describedby="emailHelp">
+
+        </div>
         <div class="mb-3">
             <label for="firstName-id" class="form-label">Имя</label>
             <input type="text" class="form-control" id="firstName-id" th:field="*{firstName}" aria-describedby="emailHelp">

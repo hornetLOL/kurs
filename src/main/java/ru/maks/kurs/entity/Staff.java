@@ -22,7 +22,6 @@ import java.util.Set;
 @Builder
 public class Staff {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Код_сотруд")
     private Long id;
 
