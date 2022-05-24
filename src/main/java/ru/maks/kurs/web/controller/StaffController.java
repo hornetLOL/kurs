@@ -67,7 +67,7 @@ public class StaffController {
             staff = new StaffDto();
         }
         model.addAttribute("staff", staff);
-        return "staff-form";
+        return "staff/staff-form";
     }
 
     @PostMapping

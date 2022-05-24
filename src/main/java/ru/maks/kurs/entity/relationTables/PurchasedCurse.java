@@ -17,7 +17,6 @@ import java.time.LocalDate;
 public class PurchasedCurse {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "Код_чека")
 	private Long id;
 

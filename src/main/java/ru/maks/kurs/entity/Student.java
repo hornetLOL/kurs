@@ -19,7 +19,6 @@ import java.util.Set;
 public class Student {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "Код_уч")
 	private Long id;
 	@Column(name = "имя")

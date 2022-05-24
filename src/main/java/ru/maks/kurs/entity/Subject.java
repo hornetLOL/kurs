@@ -17,7 +17,6 @@ import java.util.Set;
 public class Subject {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "Код_пр")
 	private Long id;
 	@Column(name = "Предмет")

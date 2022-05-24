@@ -18,7 +18,6 @@ import java.time.LocalDate;
 public class CurseStaff {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "Код_прикреп")
 	private Long id;
 
