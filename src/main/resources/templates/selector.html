@@ -20,7 +20,7 @@
                 <input type="text" name="parametr" id="student-parametr-id"/>
             </label>
             <button type="submit" class="btn btn-primary">Submit</button>
-            <a type="button" class="btn btn-primary" th:href="@{/student}">Добавить</a>
+            <a type="button" class="btn btn-primary" th:href="@{/student/change}">Добавить</a>
         </div>
     </form>
     <form th:action="@{/staff/all}" th:method="get" th:if="${activeTab == 'Staffs'}">
@@ -36,7 +36,7 @@
                 <input type="text" name="parametr" id="staff-parametr-id"/>
             </label>
             <button type="submit" class="btn btn-primary">Submit</button>
-            <a type="button" class="btn btn-primary" th:href="@{/staff}">Добавить</a>
+            <a type="button" class="btn btn-primary" th:href="@{/staff/change}">Добавить</a>
         </div>
     </form>
     <form th:action="@{/curse/all}" th:method="get" th:if="${activeTab == 'Curses'}">
@@ -53,11 +53,11 @@
                 <input type="text" name="parametr" id="curse-parametr-id"/>
             </label>
             <button type="submit" class="btn btn-primary">Submit</button>
-            <a type="button" class="btn btn-primary" th:href="@{/curse}">Добавить</a>
+            <a type="button" class="btn btn-primary" th:href="@{/curse/change}">Добавить</a>
         </div>
     </form>
     <div th:if="${activeTab =='Subject'}">
-        <a type="button" class="btn btn-primary" th:href="@{/subject}">Добавить</a>
+        <a type="button" class="btn btn-primary" th:href="@{/subject/change}">Добавить</a>
     </div>
 </div>
 </body>

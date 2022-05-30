@@ -50,7 +50,7 @@ public class CurseController {
         return "curse/curse-list";
     }
 
-    @GetMapping
+    @GetMapping("/change")
     public String getCurse(Model model, @RequestParam(name = "id", required = false) Long id) {
         CurseDto curse;
         if (id != null) {
@@ -59,7 +59,7 @@ public class CurseController {
             curse = new CurseDto();
         }
         model.addAttribute("curse", curse);
-        return "curse-form";
+        return "curse/curse-form";
     }
 
     @PostMapping

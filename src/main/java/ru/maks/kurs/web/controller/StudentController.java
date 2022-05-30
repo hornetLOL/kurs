@@ -55,7 +55,7 @@ public class StudentController {
         return "student/student-list";
     }
 
-    @GetMapping
+    @GetMapping("/change")
     public String getStudent(Model model, @RequestParam(name = "id", required = false) Long id) {
         StudentDto student;
         if (id != null) {

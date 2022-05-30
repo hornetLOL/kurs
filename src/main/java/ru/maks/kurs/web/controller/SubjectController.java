@@ -28,7 +28,7 @@ public class SubjectController {
         return "subject/subject-list";
     }
 
-    @GetMapping
+    @GetMapping("/change")
     public String getSubject(Model model, @RequestParam(name = "id", required = false) Long id) {
         SubjectDto subject;
         if (id != null) {
