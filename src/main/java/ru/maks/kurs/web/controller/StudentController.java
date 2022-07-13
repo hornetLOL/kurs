@@ -14,9 +14,7 @@ import ru.maks.kurs.web.dto.CurseDto;
 import ru.maks.kurs.web.dto.StudentDto;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Controller
@@ -25,6 +23,7 @@ import java.util.stream.Collectors;
 public class StudentController {
 
     private final StudentService studentService;
+    private final CurseService curseService;
 
     @GetMapping("/all")
     public String getStudentList(Model model, @RequestParam(name = "selection", required = false) String selectionType,
@@ -63,7 +62,10 @@ public class StudentController {
         } else {
             student = new StudentDto();
         }
-        model.addAttribute("student", student);
+        Map<String, Object> attr = new HashMap<>();
+        attr.put("student", student);
+        attr.put("cursesForSelection", curseService.findAll());
+        model.addAllAttributes(attr);
         return "student/student-form";
     }
 
@@ -75,8 +77,8 @@ public class StudentController {
 //    }
 
     @PostMapping
-    public String handlePost(StudentDto student) {
-        studentService.save(student);
+    public String handlePost(StudentDto student, @RequestParam(name = "curse_id", required = false) Long curseId) {
+        studentService.save(student, curseId);
         return "redirect:/student/all";
     }
 

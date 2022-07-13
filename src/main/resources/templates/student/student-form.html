@@ -49,6 +49,14 @@
             <label for="dateOfContract-id" class="form-label">Дата контроля</label>
             <input type="date" class="form-control" id="dateOfContract-id" th:field="*{dateOfContract}">
         </div>
+        <div>
+            <label>
+                Курс:
+                <select name="curse_id">
+                    <option th:each="i : ${cursesForSelection}" th:value="${i.id}" th:text="${i.title}"></option>
+                </select>
+            </label>
+        </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>

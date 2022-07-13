@@ -3,17 +3,14 @@ package ru.maks.kurs.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Isolation;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import ru.maks.kurs.dao.CurseDao;
+import ru.maks.kurs.dao.PurchasedCurseDao;
 import ru.maks.kurs.dao.StudentDao;
+import ru.maks.kurs.entity.Curse;
 import ru.maks.kurs.entity.Student;
 import ru.maks.kurs.entity.relationTables.PurchasedCurse;
-import ru.maks.kurs.web.dto.CurseDto;
 import ru.maks.kurs.web.dto.PurchasedCurseDto;
 import ru.maks.kurs.web.dto.StudentDto;
 import ru.maks.kurs.web.dto.mapper.StudentMapper;
@@ -30,6 +27,7 @@ public class StudentService {
     private final StudentDao studentDao;
     private final StudentMapper studentMapper;
     private final CurseDao curseDao;
+    private final PurchasedCurseDao purchasedCurseDao;
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 
 //    @Transactional(propagation = Propagation.NEVER, isolation = Isolation.DEFAULT)
@@ -39,15 +37,23 @@ public class StudentService {
 //    }
 
     @Transactional
-    public StudentDto save(final StudentDto studentDto) {
+    public StudentDto save(final StudentDto studentDto, Long curseId) {
         Student student;
         try {
             student = studentMapper.toStudent(studentDto, curseDao);
-//            if (student.getId() != null) {
+            studentDao.save(student);
+            if (curseId != null) {
+                PurchasedCurse pc;
+                Optional<Curse> c = curseDao.findById(curseId);
+                if(c.isPresent()) {
+                    pc = student.addCurse(c.get());
+                    purchasedCurseDao.save(pc);
+                }
+//                curseDao.findById(curseId).ifPresent((p) -> pc = student.addCurse(p));
 //                studentDao.findById(studentDto.getId()).ifPresent(
 //                        (p) -> student.setVersion(p.getVersion())
 //                );
-//            }
+            }
             return studentMapper.toStudentDto(studentDao.save(student));
         }catch (NoSuchElementException e){
             return null;
@@ -67,6 +73,7 @@ public class StudentService {
 
     public void deleteById(Long id) {
         try {
+            studentDao.findById(id).ifPresent((p)-> p.getCurses().forEach(c -> purchasedCurseDao.deleteById(c.getId())));
             studentDao.deleteById(id);
         } catch (EmptyResultDataAccessException e) {
             log.error(e.getMessage());
