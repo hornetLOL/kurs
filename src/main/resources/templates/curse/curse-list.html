@@ -30,7 +30,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="curse: ${curses}" th:attr="stud_index=${curse.id}">
+        <tr th:each="curse : ${curses}" th:attr="stud_index=${curse.id}">
             <td th:text="${curse.id}"></td>
             <td th:text="${curse.title}"></td>
             <td th:text="${curse.subject.id}"></td>

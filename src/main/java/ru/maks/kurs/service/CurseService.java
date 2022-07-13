@@ -15,12 +15,14 @@ import ru.maks.kurs.entity.*;
 import ru.maks.kurs.entity.Curse;
 import ru.maks.kurs.entity.relationTables.PurchasedCurse;
 import ru.maks.kurs.web.dto.CurseDto;
+import ru.maks.kurs.web.dto.PriceChangeDto;
 import ru.maks.kurs.web.dto.StaffDto;
 import ru.maks.kurs.web.dto.CurseDto;
 import ru.maks.kurs.web.dto.mapper.CurseMapper;
 import ru.maks.kurs.web.dto.mapper.CurseMapper;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -34,13 +36,24 @@ public class CurseService {
     private final StudentDao studentDao;
     private final StaffDao staffDao;
     private final SubjectDao subjectDao;
+    private final PriceChangeService priceChangeService;
 
     @Transactional
     public CurseDto save(final CurseDto curseDto){
-        Curse curse;
+        Curse curseNew;
+        Curse curseOld;
         try {
-            curse = curseMapper.toCurse(curseDto, subjectDao, studentDao, staffDao);
-            return curseMapper.toCurseDto(curseDao.save(curse));
+            curseNew = curseMapper.toCurse(curseDto, subjectDao, studentDao, staffDao);
+            curseOld = curseDao.getById(curseDto.getId());
+            if(curseNew.getId() != null && !Objects.equals(curseNew.getPrice(), curseOld.getPrice())){
+                PriceChangeDto pcdto = PriceChangeDto.builder()
+                        .curseId(curseDto.getId())
+                        .oldPrice(curseOld.getPrice())
+                        .date(LocalDate.now())
+                        .build();
+                priceChangeService.save(pcdto);
+            }
+            return curseMapper.toCurseDto(curseDao.save(curseNew));
         }catch (NoSuchElementException e){
             return null;
         }
